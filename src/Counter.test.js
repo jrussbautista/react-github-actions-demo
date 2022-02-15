@@ -29,9 +29,9 @@ test('should increment count', () => {
 test('should decrement count', () => {
   render(<Counter initialCount={5} />);
 
-  const incrementButton = screen.getByRole('button', { name: 'Decrement' });
-  userEvent.click(incrementButton);
-  userEvent.click(incrementButton);
+  const decrementButton = screen.getByRole('button', { name: 'Decrement' });
+  userEvent.click(decrementButton);
+  userEvent.click(decrementButton);
 
   expect(screen.getByText('Current Count: 3')).toBeInTheDocument();
 });
@@ -39,9 +39,9 @@ test('should decrement count', () => {
 test('should not get negative count on decrement', () => {
   render(<Counter initialCount={1} />);
 
-  const incrementButton = screen.getByRole('button', { name: 'Decrement' });
-  userEvent.click(incrementButton);
-  userEvent.click(incrementButton);
+  const decrementButton = screen.getByRole('button', { name: 'Decrement' });
+  userEvent.click(decrementButton);
+  userEvent.click(decrementButton);
 
   expect(screen.getByText('Current Count: 0')).toBeInTheDocument();
 });
