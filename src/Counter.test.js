@@ -45,3 +45,11 @@ test('should not get negative count on decrement', () => {
 
   expect(screen.getByText('Current Count: 0')).toBeInTheDocument();
 });
+
+test('should disabled decrement button when count is 0', () => {
+  render(<Counter initialCount={0} />);
+
+  const decrementButton = screen.getByRole('button', { name: 'Decrement' });
+
+  expect(decrementButton).toBeDisabled();
+});
