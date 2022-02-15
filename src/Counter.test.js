@@ -3,6 +3,16 @@ import userEvent from '@testing-library/user-event';
 
 import Counter from './Counter';
 
+test('render initial count', () => {
+  const initialCount = 5;
+
+  render(<Counter initialCount={initialCount} />);
+
+  expect(
+    screen.getByText(`Current Count: ${initialCount}`)
+  ).toBeInTheDocument();
+});
+
 test('should increment count', () => {
   render(<Counter />);
 
@@ -24,4 +34,14 @@ test('should decrement count', () => {
   userEvent.click(incrementButton);
 
   expect(screen.getByText('Current Count: 3')).toBeInTheDocument();
+});
+
+test('should not get negative count on decrement', () => {
+  render(<Counter initialCount={1} />);
+
+  const incrementButton = screen.getByRole('button', { name: 'Decrement' });
+  userEvent.click(incrementButton);
+  userEvent.click(incrementButton);
+
+  expect(screen.getByText('Current Count: 0')).toBeInTheDocument();
 });
